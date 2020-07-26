@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "freshdeskclone"
+    }
+  },
+  "defaultProject": "freshdeskclone",
+  "cli": {
+    "analytics": "305acbd5-4041-4c02-8fb9-d6e116537f0c"
+  }
 }

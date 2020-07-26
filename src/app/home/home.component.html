@@ -1,0 +1,270 @@
+<div class="conatiner-fluid">
+
+  <nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand p-2 text-light" routerLink="">
+      Freshdesk
+    </a>
+    <a class="p-2 text-light" style="text-decoration: none;" routerLink="">Logout</a>
+  </nav>
+
+  <div class="row col-12">
+    <button type="button" class="btn btn-primary" (click)="showticket()"> Show Tickets</button>
+    <button type="button" class="btn btn-primary" (click)="closeticket()"> hide Tickets</button>
+    <button type="button" class="btn btn-primary" (click)="showcontact()"> Show Contacts</button>
+    <button type="button" class="btn btn-primary" (click)="closecontact()"> hide Contacts</button>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-xs-12 mt-4">
+      <table class="table table-dark" [ngClass]="tickettable ? 'd-table' : 'd-none'">
+        <thead class="font-weight-bold">
+          <td>
+            TicketId
+          </td>
+          <td>
+            Name
+          </td>
+          <td>
+            Query
+          </td>
+          <td>
+            Created Date
+          </td>
+          <td>
+            Due Date
+          </td>
+          <td>
+            Action
+          </td>
+
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data ">
+
+            <td>
+              {{item.ticketId}}
+            </td>
+            <td>
+              {{item.name}}
+            </td>
+            <td>
+              {{item.query}}
+            </td>
+
+            <td>
+              {{item.createdDate}}
+            </td>
+            <td>
+              {{item.duedate}}
+            </td>
+            <td>
+              <button type="button" class="btn-outline-primary" (click)="deleteticket(item1.ticketId)">delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col-lg-6 col-xs-12 mt-4">
+
+
+        <table class="table table-dark " [ngClass]="contacttable ? 'd-table' : 'd-none'">
+          <thead class="font-weight-bold">
+            <td>
+              Contact ID
+            </td>
+            <td>
+              First Name
+            </td>
+            <td>
+              Last Name
+            </td>
+            <td>
+              Phone
+            </td>
+            <td>
+              Email
+            </td>
+            <td>
+              Action
+            </td>
+
+          </thead>
+          <tbody>
+            <tr *ngFor="let item1 of temp ">
+
+              <td>
+                {{item1.contactId}}
+              </td>
+              <td>
+                {{item1.first_Name}}
+              </td>
+              <td>
+                {{item1.last_Name}}
+              </td>
+
+              <td>
+                {{item1.phone}}
+              </td>
+              <td>
+                {{item1.email}}
+              </td>
+              <td>
+                <button type="button" class="btn-outline-primary"
+                  (click)="deletecontact(item1.contactId)">delete</button>
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-6 ">
+    <h3>Add contact</h3>
+
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter First Name" [(ngModel)]="contact.First_Name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Last Name" [(ngModel)]="contact.Last_Name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Phone Number" [(ngModel)]="contact.Phone">
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Email Address..." [(ngModel)]="contact.Email">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Password" [(ngModel)]="contact.Password">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Gender"
+        [(ngModel)]="contact.Gender">
+    </div>
+    <div class="form-group">
+      <input type="checkbox" [(ngModel)]="contact.Isactive">Isactive
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-block" (click)='add()'> Add Contact</button>
+  </div>
+
+
+
+  <div class="col-6">
+    <h3> Add Ticket
+    </h3>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Ticket Name" [(ngModel)]="ticket.name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Your Query" [(ngModel)]="ticket.query">
+    </div>
+    <div class="form-group">
+      <input type="checkbox" 
+        [(ngModel)]="ticket.isactive">Isactive
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter contact id" [(ngModel)]="ticket.contactsId">
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-block" (click)='addticket()'> Add Ticket</button>
+
+
+
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-6 ">
+    <h3>Update Contact</h3>
+
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter First Name" [(ngModel)]="updatecon.First_Name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Last Name" [(ngModel)]="updatecon.Last_Name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Phone Number" [(ngModel)]="updatecon.Phone">
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Email Address..." [(ngModel)]="updatecon.Email">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control form-control-user" aria-describedby="emailHelp"
+        placeholder="Enter Password" [(ngModel)]="updatecon.Password">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Gender"
+        [(ngModel)]="updatecon.Gender">
+    </div>
+    <div class="form-group">
+      <input type="checkbox"  [(ngModel)]="updatecon.Isactive">Isactive
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-block" (click)='updatecontact()'> Update Contact</button>
+
+
+
+
+
+    <h3> Update Ticket
+    </h3>
+    <div class="col-6">
+      <div class="form-group">
+        <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+          placeholder="Enter Ticket Name" [(ngModel)]="updatetic.name">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control form-control-user" aria-describedby="emailHelp"
+          placeholder="Enter Your Query" [(ngModel)]="updatetic.query">
+      </div>
+      <div class="form-group">
+        <input type="checkbox"  [(ngModel)]="updatetic.isactive">Isactive
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control form-control-user" aria-describedby="emailHelp"
+          placeholder="Enter contact id" [(ngModel)]="updatetic.contactsId">
+      </div>
+      <button type="button" class="btn btn-outline-primary btn-block" (click)='updateticket()'> Update Ticket
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-6">
+
+        <div class="form-group">
+          <input type="text" class="form-control form-control-user" placeholder="Enter contact Id to get a contact"
+            [(ngModel)]="getconbyid">
+          <button class="btn btn-primary" (click)='getcontactbyid(getconbyid)'>Get contact by ID</button>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control form-control-user" placeholder="Enter contact Id to get a contact"
+            [(ngModel)]="getticbyid">
+          <button class="btn btn-primary" (click)='getticketbyid(getticbyid)'>Get Ticket by ID</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>

@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="class">
+        <h1>
+            Contact US
+        </h1>
+        <input type="text" class="form-control" placeholder="Enter Your Name" [(ngModel)]="tickets.name">
+        <input type="text" class="form-control" placeholder="Enter your Query" [(ngModel)]="tickets.query">
+        <input type="checkbox" [(ngModel)]="tickets.isactive">Isactive
+        <input type="number" class="form-control" placeholder="Enter contact ID" [(ngModel)]="tickets.contactsId">
+        <button class="btn btn-secondary" (click)="addticket()"></button>
+
+      
+    </div>
+
+</div>
