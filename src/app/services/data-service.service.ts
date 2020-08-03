@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataServiceService {
-  private globalDataUrl = `https://localhost:44302/api/freshdesk/gettickets`
-  private getcontacturl=`https://localhost:44302/api/Freshdesk/GetContacts`
+  private globalDataUrl = `https://freshdeskdb.azurewebsites.net/api/freshdesk/gettickets`
+  private getcontacturl=`https://freshdeskdb.azurewebsites.net/api/Freshdesk/GetContacts`
  
   
  
@@ -23,25 +23,25 @@ export class DataServiceService {
   }
 
   addTicket(addticket): Observable<any> {
-    return this.http.post('https://localhost:44302/api/freshdesk/addticket', addticket)
+    return this.http.post('https://freshdeskdb.azurewebsites.net/api/freshdesk/addticket', addticket)
   }
 
 
   getticketbyid(id): Observable<any> {
-    return this.http.get('https://localhost:44302/api/Freshdesk/GetTicketsById?id=' + id)
+    return this.http.get('https://freshdeskdb.azurewebsites.net/api/Freshdesk/GetTicketsById?id=' + id)
   }
 
 
   auth(email, password): Observable<any> {
-    return this.http.get('https://localhost:44302/api/Freshdesk/auth?email=' + email + '&password=' + password)
+    return this.http.get('https://freshdeskdb.azurewebsites.net/api/Freshdesk/auth?email=' + email + '&password=' + password)
   }
 
   getcontactbyid(idd): Observable<any> {
-    return this.http.get('https://localhost:44302/api/Freshdesk/GetContactsById?id=' + idd)
+    return this.http.get('https://freshdeskdb.azurewebsites.net/api/Freshdesk/GetContactsById?id=' + idd)
   }
 
   addcontact(addcontact): Observable<any> {
-    return this.http.post('https://localhost:44302/api/freshdesk/addcontact', addcontact)
+    return this.http.post('https://freshdeskdb.azurewebsites.net/api/freshdesk/addcontact', addcontact)
   }
 
   getcontact():Observable<any>{
@@ -49,19 +49,19 @@ export class DataServiceService {
   }
 
   deletecontact(id1):Observable<any>{
-    return this.http.get(`https://localhost:44302/api/Freshdesk/DeleteContact?id=`+id1)
+    return this.http.get(`https://freshdeskdb.azurewebsites.net/api/Freshdesk/DeleteContact?id=`+id1)
   }
 
   deleteticket(id2):Observable<any>{
-    return this.http.get(`https://localhost:44302/api/Freshdesk/Deleteticket?id=`+id2)
+    return this.http.get(`https://freshdeskdb.azurewebsites.net/api/Freshdesk/Deleteticket?id=`+id2)
   }
 
   updatecontact(updatecontact):Observable<any>{
-    return this.http.post(`https://localhost:44302/api/Freshdesk/updatecontact`,updatecontact)
+    return this.http.post(`https://freshdeskdb.azurewebsites.net/api/Freshdesk/updatecontact`,updatecontact)
   }
 
   updateticket(addticket):Observable<any>{
-    return this.http.post(`https://localhost:44302/api/Freshdesk/updateticket`,addticket)
+    return this.http.post(`https://freshdeskdb.azurewebsites.net/api/Freshdesk/updateticket`,addticket)
   }
 
 
